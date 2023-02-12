@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calcolatore di avanzamento del tornio</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+	</style>
+	<script>
+		function calculate() {
+			// Recupera i valori inseriti dall'utente
+			var diametro = parseFloat(document.getElementById("diametro").value);
+			var velocita = parseFloat(document.getElementById("velocita").value);
+			var numeroGiri = parseFloat(document.getElementById("numero-giri").value);
+			var angolo = parseFloat(document.getElementById("angolo").value);
+
+			// Calcola l'avanzamento
+			var avanzamento = (diametro / 2) * Math.tan(angolo * Math.PI / 180) * numeroGiri;
+
+			// Calcola la velocità di avanzamento
+			var velocitaAvanzamento = avanzamento * velocita;
+
+			// Mostra i risultati all'utente
+			document.getElementById("avanzamento").innerHTML = "L'avanzamento del tornio è di " + avanzamento.toFixed(2) + " mm/giro.";
+			document.getElementById("velocita-avanzamento").innerHTML = "La velocità di avanzamento del tornio è di " + velocitaAvanzamento.toFixed(2) + " mm/min.";
+		}
+	</script>
+</head>
+<body>
+	<h1>Calcolatore di avanzamento del tornio</h1>
+	<p>Inserisci i dati richiesti per calcolare l'avanzamento del tornio:</p>
+	<label for="diametro">Diametro (mm):</label>
+	<input type="number" id="diametro" name="diametro" step="0.01" required><br><br>
+	<label for="velocita">Velocità di rotazione (giri/min):</label>
+	<input type="number" id="velocita" name="velocita" step="0.01" required><br><br>
+	<label for="numero-giri">Numero di giri per passata:</label>
+	<input type="number" id="numero-giri" name="numero-giri" step="1" required><br><br>
+	<label for="angolo">Angolo di inclinazione (gradi):</label>
+	<input type="number" id="angolo" name="angolo" step="0.01" required><br><br>
+	<button onclick="calculate()">Calcola</button><br><br>
+	<p id="avanzamento"></p>
+	<p id="velocita-avanzamento"></p>
+</body>
+</html>
